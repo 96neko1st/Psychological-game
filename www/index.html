@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="ja" ng-app="my-app">
+<html lang="ja">
 
 <head>
     <meta charset="utf-8">
@@ -7,39 +7,44 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    
     <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/onsen/2.8.3/js/angular-onsenui.min.js"></script>
+        
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDo1Si93ChP395UsIQlQff-NYpkayHfEXQ&libraries=geometry"></script>
+    
+    <script>
+        ons.bootstrap();
+    </script>
 </head>
 <body>
-    <ons-page ng-controller="PageController">
+    <ons-page>
         <ons-toolbar>
             <div class="center">Tab 1</div>
         </ons-toolbar>
         
-        <ons-tabbar swipeable position="auto">
-            <ons-tab page="tab1.html" label="Tab 1" icon="ion-home, material:md-home" active>
-            </ons-tab>
-            <ons-tab page="tab2.html" label="Tab 2" icon="md-settings" active-icon="md-face">    
-            </ons-tab>
+        <ons-tabbar swipeable position="bottom">
+            <ons-tab page="tab1.html" label="Home" icon="ion-home, material:md-home" active></ons-tab>
+            <ons-tab page="tab2.html" label="Camera" icon="md-camera"></ons-tab>
+            <ons-tab page="tab3.html" label="Map" icon="md-map"></ons-tab>
     </ons-page>
     
     <template id="tab1.html">
         <ons-page id="Tab1">
-            <p style="text-align:center;">
-                This is the First page.                
-            </p>
         </ons-page>
     </template>
     
     <template id="tab2.html">
-        <ons-page id="Tab2">
-            <p style="text-align:center;">
-                This is the second page.
-            </p>
+        <ons-page id="Tab2">            
         </ons-page>
     </template>
     
-    <script src="js/myscript.js"></script>
+    <template id="tab3.html">
+        <ons-page>
+            <div id="map"></div>
+            <script src="js/myscript.js"></script>
+        </ons-page>
+    </template>
 </body>
 </html>
