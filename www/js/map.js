@@ -1,32 +1,38 @@
 ons.bootstrap().controller('MainCtrl', function($scope) { 
     $scope.tabbar_hide = false;
-    $scope.title = 'Home';
-    $scope.updateTitle = function($event) {
-        $scope.title = angular.element($event.tabItem).attr('label');
-    };
-    $scope.click = function(){
-        //$scope.tabbar_hide = true;
+    
+    //Tabbarの表示切替
+    $scope.switchTab = function(){
+        $scope.tabbar_hide = !$scope.tabbar_hide;
     }
+    
+    const jp = jpPrefecture;
+    $scope.hokaido = jp.prefFindByRegion("北海道", "name");
+    $scope.touhoku = jp.prefFindByRegion("東北", "name");
+    $scope.kanto = jp.prefFindByRegion("関東", "name");
+    $scope.tyubu = jp.prefFindByRegion("中部", "name");
+    $scope.kinki = jp.prefFindByRegion("近畿", "name");
+    $scope.tyugoku = jp.prefFindByRegion("中国", "name");
+    $scope.sikoku = jp.prefFindByRegion("四国", "name");
+    $scope.kyusyu = jp.prefFindByRegion("九州", "name");
 });
 
 $(function() {
     "use strict";
     
     document.addEventListener('prechange', function(event) {
-        // document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
         //2つめのCameraタグ
         if(event.index === 1){
             if(video == null)
                 initVideo();
             else
-                cameraId = setInterval(drawCanvas, 30);
+                cameraId = setInterval(drawCanvas, 50);
         }else{
             if(cameraId != null){
                 clearInterval(cameraId);
                 cameraId = null;
             }
         }
-        
         //3つ目のMapタグ
         if(event.index === 2){
             //google mapを表示して位置情報を取得する
@@ -38,6 +44,44 @@ $(function() {
             }
         }
     });
+    
+    /*
+        写真に関する処理 
+    */
+    
+    let canvas;
+    let ctx;
+    let video;
+    let cameraId = null;
+    
+    const initVideo = () => {
+        //videoの初期化
+        video = document.getElementById("video");
+        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+        window.URL = window.URL || window.webkitURL;
+        navigator.getUserMedia({
+            audio: false,
+            /*音声使用の有無*/
+            video: true /*カメラ使用の有無*/
+        }, function(stream) {
+            video.src = URL.createObjectURL(stream);
+            initCanvas();
+        }, function(error) {
+            console.error(error);
+        });
+    }
+    
+    const initCanvas = () => {
+        canvas = document.getElementById("mycanvas");
+        canvas.width = $(document).width();
+        canvas.height = $(document).height();
+        ctx = canvas.getContext("2d");
+        cameraId = setInterval(drawCanvas, 50);
+    }
+    
+    const drawCanvas = ()=>{
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    }
     
     
     /*
@@ -92,42 +136,4 @@ $(function() {
         "timeout": 1000000,
         "maximumAge": 0,
     };
-    
-    /*
-        写真に関する処理 
-    */
-    
-    let canvas;
-    let ctx;
-    let video;
-    let cameraId = null;
-    
-    const initVideo = () => {
-        //videoの初期化
-        video = document.getElementById("video");
-        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-        window.URL = window.URL || window.webkitURL;
-        navigator.getUserMedia({
-            audio: false,
-            /*音声使用の有無*/
-            video: true /*カメラ使用の有無*/
-        }, function(stream) {
-            video.src = URL.createObjectURL(stream);
-            initCanvas();
-        }, function(error) {
-            console.error(error);
-        });
-    }
-    
-    const initCanvas = () => {
-        canvas = document.getElementById("mycanvas");
-        canvas.width = $(document).width();
-        canvas.height = $(document).height();
-        ctx = canvas.getContext("2d");
-        cameraId = setInterval(drawCanvas, 30);
-    }
-    
-    const drawCanvas = ()=>{
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-    }
 });

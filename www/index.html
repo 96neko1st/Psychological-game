@@ -7,32 +7,51 @@
     <link rel="stylesheet" href="components/loader.css">
     <script src="components/loader.js"></script>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
-    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
-    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/onsen/2.8.3/js/angular-onsenui.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/jp-prefecture.js"></script>
 </head>
 
 <body ng-controller="MainCtrl">
     <ons-page>
-        <ons-tabbar swipeable position="bottom" hide-tabs="{{tabbar_hide}}" var="myNavigator">
+        <ons-tabbar position="bottom" hide-tabs="{{tabbar_hide}}" animation="none" var="myNavigator">
             <ons-tab page="tab1.html" label="Home" icon="ion-home, material:md-home" active></ons-tab>
-            <ons-tab page="tab2.html" label="Camera" icon="md-camera" ng-click="click()"></ons-tab>
+            <ons-tab page="tab2.html" label="Camera" icon="md-camera" ng-click="switchTab()"></ons-tab>
             <ons-tab page="tab3.html" label="Map" icon="md-map"></ons-tab>
         </ons-tabbar>
     </ons-page>
     
     <template id="tab1.html">
         <ons-page id="Tab1">
+            <ons-toolbar>
+                <div class="center">Home</div>
+            </ons-toolbar>
+            <ons-list>
+                <ons-list-header>北海道</ons-list-header>
+                <ons-list-item ng-repeat="value in hokaido" value="{{value}}" modifier="chevron" tappable>{{value}}</ons-list-item>
+                <ons-list-header>東北地方</ons-list-header>
+                <ons-list-item ng-repeat="value in touhoku" value="{{value}}" modifier="chevron" tappable>{{value}}</ons-list-item>
+                <ons-list-header>関東地方</ons-list-header>
+                <ons-list-item ng-repeat="value in kanto" value="{{value}}" modifier="chevron" tappable>{{value}}</ons-list-item>
+                <ons-list-header>中部地方</ons-list-header>
+                <ons-list-item ng-repeat="value in tyubu" value="{{value}}" modifier="chevron" tappable>{{value}}</ons-list-item>
+                <ons-list-header>近畿地方</ons-list-header>
+                <ons-list-item ng-repeat="value in kinki" value="{{value}}" modifier="chevron" tappable>{{value}}</ons-list-item>
+                <ons-list-header>中国地方</ons-list-header>
+                <ons-list-item ng-repeat="value in tyugoku" value="{{value}}" modifier="chevron" tappable>{{value}}</ons-list-item>
+                <ons-list-header>四国地方</ons-list-header>
+                <ons-list-item ng-repeat="value in sikoku" value="{{value}}" modifier="chevron" tappable>{{value}}</ons-list-item>
+                <ons-list-header>九州地方</ons-list-header>
+                <ons-list-item ng-repeat="value in kyusyu" value="{{value}}" modifier="chevron" tappable>{{value}}</ons-list-item>
+            </ons-list>
         </ons-page>
     </template>
     <template id="tab2.html">
-        <ons-page id="Tab2">
+        <ons-page id="Tab2" ng-dblclick="switchTab()">
+            <div>
             <video id="video"></video>
             <canvas id="mycanvas"></canvas>
-            <script src="js/canvas.js"></script>
         </ons-page>
     </template> 
     <template id="tab3.html">
