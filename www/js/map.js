@@ -6,6 +6,10 @@ ons.bootstrap().controller('MainCtrl', function($scope) {
         $scope.tabbar_hide = !$scope.tabbar_hide;
     }
     
+    $scope.slidePage = function(){
+        myNavigator.pushPage('stamp.html', { animation : 'slide' } );
+    }
+    
     const jp = jpPrefecture;
     $scope.hokaido = jp.prefFindByRegion("北海道", "name");
     $scope.touhoku = jp.prefFindByRegion("東北", "name");
