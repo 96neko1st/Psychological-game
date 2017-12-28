@@ -4,47 +4,44 @@
 <head>
     <meta charset="utf-8">
     <title>AngularJSの練習</title>
+    <link rel="stylesheet" href="components/loader.css">
+    <script src="components/loader.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
-    
     <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/onsen/2.8.3/js/angular-onsenui.min.js"></script>
-        
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDo1Si93ChP395UsIQlQff-NYpkayHfEXQ&libraries=geometry"></script>
-    
-    <script>
-        ons.bootstrap();
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
-<body>
+
+<body ng-controller="MainCtrl">
     <ons-page>
-        <ons-toolbar>
-            <div class="center">Tab 1</div>
-        </ons-toolbar>
-        
-        <ons-tabbar swipeable position="bottom">
+        <ons-tabbar swipeable position="bottom" hide-tabs="{{tabbar_hide}}" var="myNavigator">
             <ons-tab page="tab1.html" label="Home" icon="ion-home, material:md-home" active></ons-tab>
-            <ons-tab page="tab2.html" label="Camera" icon="md-camera"></ons-tab>
+            <ons-tab page="tab2.html" label="Camera" icon="md-camera" ng-click="click()"></ons-tab>
             <ons-tab page="tab3.html" label="Map" icon="md-map"></ons-tab>
+        </ons-tabbar>
     </ons-page>
     
     <template id="tab1.html">
         <ons-page id="Tab1">
         </ons-page>
     </template>
-    
     <template id="tab2.html">
-        <ons-page id="Tab2">            
+        <ons-page id="Tab2">
+            <video id="video"></video>
+            <canvas id="mycanvas"></canvas>
+            <script src="js/canvas.js"></script>
         </ons-page>
-    </template>
-    
+    </template> 
     <template id="tab3.html">
         <ons-page>
             <div id="map"></div>
-            <script src="js/myscript.js"></script>
         </ons-page>
     </template>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDo1Si93ChP395UsIQlQff-NYpkayHfEXQ&libraries=geometry"></script>
+    <script src="js/map.js"></script>
 </body>
+
 </html>
