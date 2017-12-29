@@ -6,8 +6,14 @@ ons.bootstrap().controller('MainCtrl', function($scope) {
         $scope.tabbar_hide = !$scope.tabbar_hide;
     }
     
-    $scope.slidePage = function(){
-        myNavigator.pushPage('stamp.html', { animation : 'slide' } );
+    $scope.area = [
+        ["函館山", "旭川市旭山動物園","札幌ステラプレイス"],
+        ["十和田湖", "十和田市現代美術館","青森県営浅虫水族館"],
+    ];
+    
+    //スタンプラリー一一覧に移動
+    $scope.slidePage = function(number, skip){
+        myNavigator.pushPage('stamp.html', {animation: "slide", data: {index: number + skip}});
     }
     
     const jp = jpPrefecture;
