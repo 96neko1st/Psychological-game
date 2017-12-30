@@ -34,17 +34,17 @@
                 <ons-list-header>東北地方</ons-list-header>
                 <ons-list-item ng-repeat="value in touhoku" value="{{value}}" modifier="chevron" tappable ng-click="slidePage($index, 1)">{{value}}</ons-list-item>
                 <ons-list-header>関東地方</ons-list-header>
-                <ons-list-item ng-repeat="value in kanto" value="{{value}}" modifier="chevron" tappable>{{value}}</ons-list-item>
+                <ons-list-item ng-repeat="value in kanto" value="{{value}}" modifier="chevron" tappable ng-click="slidePage($index, 7)">{{value}}</ons-list-item>
                 <ons-list-header>中部地方</ons-list-header>
-                <ons-list-item ng-repeat="value in tyubu" value="{{value}}" modifier="chevron" tappable>{{value}}</ons-list-item>
+                <ons-list-item ng-repeat="value in tyubu" value="{{value}}" modifier="chevron" tappable ng-click="slidePage($index, 14)">{{value}}</ons-list-item>
                 <ons-list-header>近畿地方</ons-list-header>
-                <ons-list-item ng-repeat="value in kinki" value="{{value}}" modifier="chevron" tappable>{{value}}</ons-list-item>
+                <ons-list-item ng-repeat="value in kinki" value="{{value}}" modifier="chevron" tappable ng-click="slidePage($index, 23)">{{value}}</ons-list-item>
                 <ons-list-header>中国地方</ons-list-header>
-                <ons-list-item ng-repeat="value in tyugoku" value="{{value}}" modifier="chevron" tappable>{{value}}</ons-list-item>
+                <ons-list-item ng-repeat="value in tyugoku" value="{{value}}" modifier="chevron" tappable ng-click="slidePage($index, 30)">{{value}}</ons-list-item>
                 <ons-list-header>四国地方</ons-list-header>
-                <ons-list-item ng-repeat="value in sikoku" value="{{value}}" modifier="chevron" tappable>{{value}}</ons-list-item>
+                <ons-list-item ng-repeat="value in sikoku" value="{{value}}" modifier="chevron" tappable ng-click="slidePage($index, 35)">{{value}}</ons-list-item>
                 <ons-list-header>九州地方</ons-list-header>
-                <ons-list-item ng-repeat="value in kyusyu" value="{{value}}" modifier="chevron" tappable>{{value}}</ons-list-item>
+                <ons-list-item ng-repeat="value in kyusyu" value="{{value}}" modifier="chevron" tappable ng-click="slidePage($index, 39)">{{value}}</ons-list-item>
             </ons-list>
         </ons-page>
     </ons-template>
